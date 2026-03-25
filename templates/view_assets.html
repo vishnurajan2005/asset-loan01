@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Assets</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+{% include 'admin_navbar.html' %}
+
+<div class="container">
+
+    <div class="page-card">
+
+        <h2 class="page-title">Registered Assets</h2>
+        <p class="page-subtitle">All assets available in the system</p>
+
+        <div class="table-container">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Asset Name</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for asset in assets %}
+                    <tr>
+                        <td>{{ asset.id }}</td>
+                        <td>{{ asset.asset_name }}</td>
+                        <td>{{ asset.asset_type }}</td>
+                        <td>₹ {{ asset.asset_value }}</td>
+                        <td>
+                            {% if asset.status == 'available' %}
+                                <span class="badge green">Available</span>
+                            {% elif asset.status == 'locked' %}
+                                <span class="badge orange">Locked</span>
+                            {% else %}
+                                <span class="badge gray">Used</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+

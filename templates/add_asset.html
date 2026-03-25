@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Asset</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+{% include 'admin_navbar.html' %}
+
+<div class="container">
+
+    <div class="form-card">
+        <h2 class="form-title">Add New Asset</h2>
+        <p class="form-subtitle">Register new gold, cash or physical assets</p>
+
+        <form method="POST" action="/admin/add_asset">
+
+            <div class="form-group">
+                <label for="asset_type">Asset Type</label>
+<select id="asset_type" name="asset_type" required>
+
+                    <option value="Gold">Gold</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Physical">Physical</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="asset_name">Asset Name</label>
+<input id="asset_name" type="text" name="asset_name" placeholder="e.g. Gold Ring, Cash Deposit" required>
+
+            </div>
+
+            <div class="form-group">
+                <label for="value">Asset Value (₹)</label>
+<input id="value" type="number" name="value" placeholder="Enter asset value" required>
+
+            </div>
+
+            <button type="submit" class="btn full-btn">Add Asset</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+

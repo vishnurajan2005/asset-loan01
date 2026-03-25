@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Loans</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+{% include 'admin_navbar.html' %}
+
+<div class="container">
+
+    <div class="page-card">
+
+        <h2 class="page-title">Pending Loan Applications</h2>
+        <p class="page-subtitle">Approve or reject customer loan requests</p>
+
+        <div class="table-container">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Asset</th>
+                        <th>Amount</th>
+                        <th>Tenure</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for loan in loans %}
+                    <tr>
+                        <td>{{ loan.id }}</td>
+                        <td>{{ loan.user_name }}</td>
+                        <td>{{ loan.asset_name }}</td>
+                        <td>₹ {{ loan.loan_amount }}</td>
+                        <td>{{ loan.tenure }} months</td>
+                        <td>
+                            <span class="badge orange">Pending</span>
+                        </td>
+                        <td>
+                            <a href="/admin/approve_loan/{{ loan.id }}" class="btn-sm approve-btn">Approve</a>
+
+<form action="/admin/reject_loan/{{ loan.id }}" method="POST" style="display:inline;">
+
+                                <button type="submit" class="btn-sm reject-btn">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

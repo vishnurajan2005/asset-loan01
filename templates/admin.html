@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+{% include 'admin_navbar.html' %}
+
+<div class="container">
+    <div class="admin-title">Welcome Admin</div>
+<div class="admin-subtitle">Manage assets, loans, users and system operations</div>
+
+<div class="admin-grid">
+
+    <div class="admin-box">
+
+            <h3>Add Asset</h3>
+            <p>Add gold, cash and physical assets</p>
+            <a href="/admin/add_asset" class="btn">Open</a>
+        </div>
+
+        <div class="box">
+            <h3>View Assets</h3>
+            <p>View and manage all registered assets</p>
+            <a href="/admin/view_assets" class="btn">Open</a>
+        </div>
+
+        <div class="box">
+            <h3>Approve Loans</h3>
+            <p>Approve or reject loan applications</p>
+            <a href="/admin/approve_loans" class="btn">Open</a>
+        </div>
+
+        <div class="box">
+            <h3>Transactions</h3>
+            <p>Track all system transactions</p>
+            <a href="/admin/transactions" class="btn">Open</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+
+
+

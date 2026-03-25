@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Apply Loan</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .emi-preview{
+            margin-top:15px;
+            padding:10px;
+            background:#f1f5f9;
+            border-radius:6px;
+            font-size:14px;
+            display:none;
+        }
+        .emi-preview span{
+            font-weight:600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Customer Dashboard</h2>
+</div>
+
+<div class="menu">
+    <a href="/customer">Dashboard</a>
+    <a href="/my_loans">My Loans</a>
+    <a href="/repayments">Repayments</a>
+    <a href="/apply_loan_page">Apply Loan</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Apply for Loan</h2>
+
+        <form method="POST" action="/apply_loan">
+
+            <label for="asset_id">Select Asset</label><br>
+            <select name="asset_id" id="asset_id" required>
+                {% for a in assets %}
+                    <option value="{{ a[0] }}">
+                        {{ a[2] }} ({{ a[1] }}) - ₹{{ a[3] }}
+                    </option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="loan_amount">Loan Amount</label><br>
+            <input type="number" id="loan_amount" name="loan_amount" required min="1"><br><br>
+
+            <label for="tenure">Tenure (months)</label><br>
+            <input type="number" id="tenure" name="tenure" required min="1"><br><br>
+
+            <!-- EMI Preview UI (frontend only, safe) -->
+            <div class="emi-preview" id="emiBox">
+                Estimated Monthly EMI: ₹<span id="emiValue">0</span><br>
+                <small style="color:#555;">*Final EMI will be calculated after admin approval</small>
+            </div>
+
+            <br>
+            <button class="btn" type="submit">Apply Loan</button>
+        </form>
+
+        <br>
+        <a href="/customer" class="btn">Back</a>
+    </div>
+</div>
+
+<script>
+    const amountInput = document.getElementById("loan_amount");
+    const tenureInput = document.getElementById("tenure");
+    const emiBox = document.getElementById("emiBox");
+    const emiValue = document.getElementById("emiValue");
+
+   function calculatePreviewEMI(){
+    const principal = Number.parseFloat(amountInput.value);
+    const tenureMonths = Number.parseInt(tenureInput.value);
+    const annualRate = 10; // same as backend
+    const rate = annualRate / (12 * 100);
+
+    if(principal > 0 && tenureMonths > 0){
+        const emi = (principal * rate * Math.pow((1+rate), tenureMonths)) / 
+                    (Math.pow((1+rate), tenureMonths) - 1);
+
+        emiValue.innerText = emi.toFixed(2);
+        emiBox.style.display = "block";
+    }else{
+        emiBox.style.display = "none";
+    }
+}
+
+
+    amountInput.addEventListener("input", calculatePreviewEMI);
+    tenureInput.addEventListener("input", calculatePreviewEMI);
+</script>
+
+</body>
+</html>

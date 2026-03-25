@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Repayments</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Customer Dashboard</h2>
+</div>
+
+<div class="menu">
+    <a href="/customer">Dashboard</a>
+    <a href="/my_loans">My Loans</a>
+    <a href="/repayments">Repayments</a>
+    <a href="/apply_loan_page">Apply Loan</a>
+    <a href="/logout">Logout</a>
+</div>
+
+
+<div class="container">
+    <h2>My Approved Loans</h2>
+
+    <table class="styled-table">
+        <tr>
+            <th>Loan ID</th>
+            <th>Asset</th>
+            <th>Total Loan</th>
+            <th>Tenure</th>
+            <th>Monthly EMI</th>
+            <th>Remaining</th>
+            <th>Action</th>
+        </tr>
+
+       {% for loan in loans %}
+<tr>
+    <td>{{ loan.loan_id }}</td>
+    <td>{{ loan.asset_name }}</td>
+    <td>₹{{ loan.loan_amount }}</td>
+    <td>{{ loan.tenure }}</td>
+    <td>₹{{ loan.emi }}</td>
+    <td>₹{{ loan.balance }}</td>
+    <td>
+    {% if loan.status == 'approved' and loan.balance > 0 %}
+        <form action="/pay_emi/{{ loan.loan_id }}" method="GET" style="margin:0;">
+            <button type="submit" class="btn pay-btn">Pay EMI</button>
+        </form>
+    {% else %}
+        <span style="color:green;font-weight:600;">Closed</span>
+    {% endif %}
+</td>
+
+
+
+</tr>
+{% else %}
+<tr>
+    <td colspan="7">No approved loans</td>
+</tr>
+{% endfor %}
+
+    </table>
+</div>
+
+</body>
+</html>
+

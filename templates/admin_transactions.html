@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Transactions</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+{% include 'admin_navbar.html' %}
+
+<div class="container">
+
+    <div class="page-card">
+
+        <h2 class="page-title">System Transactions</h2>
+        <p class="page-subtitle">All financial activities across the platform</p>
+
+        <div class="table-container">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Loan ID</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for t in transactions %}
+                    <tr>
+                        <td>{{ t.id }}</td>
+                        <td>{{ t.loan_id }}</td>
+                        <td>{{ t.user_name }}</td>
+                        <td>₹ {{ t.amount }}</td>
+                        <td>{{ t.action }}</td>
+                        <td>
+                            {% if t.txn_type == 'EMI' %}
+                                <span class="badge green">EMI</span>
+                            {% elif t.txn_type == 'EMI_PAID' %}
+                                <span class="badge blue">EMI PAID</span>
+                            {% else %}
+                                <span class="badge gray">SYSTEM</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ t.action_date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

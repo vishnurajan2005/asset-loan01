@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+        }
+
+        /* ===== HEADER ===== */
+        .header{
+            background:#1f2a3a;
+            color:white;
+            padding:18px;
+            text-align:center;
+            font-size:22px;
+            font-weight:600;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar{
+            background:white;
+            display:flex;
+            justify-content:center;
+            gap:40px;
+            padding:12px 0;
+            border-bottom:1px solid #ddd;
+        }
+
+        .navbar a{
+            text-decoration:none;
+            color:#1f2a3a;
+            font-weight:600;
+            font-size:16px;
+        }
+
+        .navbar a:hover{
+            color:#0d6efd;
+        }
+
+        /* ===== MAIN ===== */
+        .container{
+            padding:40px;
+            text-align:center;
+        }
+
+        .title{
+            font-size:32px;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#666;
+            margin-bottom:40px;
+            font-size:16px;
+        }
+
+        /* ===== ACTION BOXES ===== */
+        .grid{
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+
+        .box{
+            background:white;
+            width:300px;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            text-align:center;
+        }
+
+        .box h3{
+            font-size:22px;
+            margin-bottom:10px;
+        }
+
+        .box p{
+            color:#666;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:10px 22px;
+            background:#1f2a3a;
+            color:white;
+            text-decoration:none;
+            border-radius:6px;
+            font-weight:600;
+        }
+
+        .btn:hover{
+            background:#0d6efd;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        Customer Dashboard
+    </div>
+
+    <!-- NAVBAR -->
+   <div class="navbar">
+    <a href="/customer">Dashboard</a>
+    <a href="/my_loans">My Loans</a>
+    <a href="/repayments">Repayments</a>
+    <a href="/apply_loan_page">Apply Loan</a>
+    <a href="/logout">Logout</a>
+</div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="title">Welcome Customer</div>
+        <div class="subtitle">Manage your loans and repayments</div>
+
+        <div class="grid">
+
+            <div class="box">
+                <h3>Apply Loan</h3>
+                <p>Apply for a new loan using available assets</p>
+                <a href="/apply_loan_page" class="btn">Apply Loan</a>
+            </div>
+
+            <div class="box">
+                <h3>My Loans</h3>
+                <p>View all your loan applications</p>
+                <a href="/my_loans" class="btn">View Loans</a>
+            </div>
+
+            <div class="box">
+                <h3>Repayments</h3>
+                <p>Pay EMI and track repayments</p>
+                <a href="/repayments" class="btn">Pay EMI</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
